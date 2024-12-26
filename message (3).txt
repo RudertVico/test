@@ -1037,7 +1037,7 @@ end
 
 local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/3345-c-a-t-s-u-s/NOTHING/main/source.lua'))();
 
-    --\\ Create Main
+--\\ Create Main
 local Window = NothingLibrary.new({
 	Title = "Vico - NeuX",
 	Description = "Vico - Blade Ball - Test",
@@ -1047,121 +1047,120 @@ local Window = NothingLibrary.new({
 
 local TabFrame = Window:NewTab({
 	Title = "Main",
-	Description = "very cool and awesome",
+	Description = "Very cool and awesome",
 	Icon = "rbxassetid://7733960981"
 })
 
-    })
-    --\\ End
-    --\\ Create Tab
-       Tabs = {
-        Main = Window:AddTab({ Title = "Combat", Icon = "" }),
-        Mina = Window:AddTab({ Title = "Visual", Icon = "" }),
-        Credits = Window:AddTab({ Title = "Credits", Icon = ""}),
-    }
-    
-    
-    --// auto parry
-    
-    do
-        local auto_parry = Tabs.Main:AddToggle("ap",{
-            Title = "Auto Parry", 
-            Description = " Main Auto Parry",
-            Default = false,
-        })
-    
-        auto_parry:OnChanged(function(v)
-            auto_parry_enabled = v
-        end)
-        local curve_metho = Tabs.Main:AddToggle("am",{
-            Title = "Auto Spam",
-            Description = "Toggle Auto Spam",
-            Default = false,
-        })
-    
-        curve_metho:OnChanged(function(v)
-            skibidispam = v
-        end)
-        local curve_meho = Tabs.Main:AddToggle("aa",{
-            Title = "Anti Curve",
-            Description = "(Recommended, Dont Turn Off)",
-            Default = true,
-        })
-    
-        curve_meho:OnChanged(function(v)
-            anticurveskibi = v
-        end)
-        local curve_method2 = Tabs.Main:AddToggle("cm",{
-            Title = "Curve Ball",
-            Description = " Curve The Ball",
-            Default = false,
-        })
-    
-        curve_method2:OnChanged(function(v)
-            current_curve = v
-        end)
-        local Dropdown = Tabs.Main:AddDropdown("pdown", {
-            Title = "Auto Parry Mode",
-            Values = {"Legit", "Blatant"},
-            Multi = false,
-            Default = "Blatant",
-        })
-    
-        Dropdown:SetValue("Blatant")
-    
-        Dropdown:OnChanged(function(Value)
-            parry_mode = Value
-        end)
-        local Dropddown = Tabs.Main:AddDropdown("pdowdn", {
-            Title = "Spam Speed",
-            Values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
-            Multi = false,
-            Default = 3,
-        })
-    
-        Dropddown:SetValue("3")
-    
-        Dropddown:OnChanged(function(Value)
-            speeddo = Value
-        end)
-        local migaa = Tabs.Mina:AddToggle("op",{
-            Title = "Visualizer", 
-            Description = "Auto Parry Range Visualizer",
-            Default = false,
-        })
-    
-        migaa:OnChanged(function(v)
-            visualize_Enabled = v
-        end)
-        Tabs.Mina:AddButton({
-            Title = "Optimize",
-            Description = "Smoothen Ur Game Performance",
-            Callback = function()
-             optimizer()
-            end
-        })
-        Tabs.Credits:AddButton({
-            Title = "Rudert",
-            Description = "Main Owner",
-            Callback = function()
-             print("Josh")
-            end
-        })
-        Tabs.Credits:AddButton({
-            Title = "...",
-            Description = "Assistant Developer",
-            Callback = function()
-             print("CBB")
-            end
-        })
-        Tabs.Credits:AddButton({
-            Title = "Check New Update",
-            Description = "• Check Update •",
-            Callback = function()
-             print("Update")
-            end
-        })
-        end
+local Tabs = {
+	Main = Window:NewTab({
+		Title = "Combat",
+		Icon = ""
+	}),
+	Mina = Window:NewTab({
+		Title = "Visual",
+		Icon = ""
+	}),
+	Credits = Window:NewTab({
+		Title = "Credits",
+		Icon = ""
+	})
+}
+
+--// Auto Parry
+local auto_parry = Tabs.Main:NewToggle({
+	Title = "Auto Parry",
+	Description = "Main Auto Parry",
+	Default = false,
+	Callback = function(v)
+		auto_parry_enabled = v
+	end
+})
+
+local curve_metho = Tabs.Main:NewToggle({
+	Title = "Auto Spam",
+	Description = "Toggle Auto Spam",
+	Default = false,
+	Callback = function(v)
+		skibidispam = v
+	end
+})
+
+local curve_meho = Tabs.Main:NewToggle({
+	Title = "Anti Curve",
+	Description = "(Recommended, Don't Turn Off)",
+	Default = true,
+	Callback = function(v)
+		anticurveskibi = v
+	end
+})
+
+local curve_method2 = Tabs.Main:NewToggle({
+	Title = "Curve Ball",
+	Description = "Curve The Ball",
+	Default = false,
+	Callback = function(v)
+		current_curve = v
+	end
+})
+
+local Dropdown = Tabs.Main:NewDropdown({
+	Title = "Auto Parry Mode",
+	Data = {"Legit", "Blatant"},
+	Default = "Blatant",
+	Callback = function(value)
+		parry_mode = value
+	end
+})
+
+local Dropddown = Tabs.Main:NewDropdown({
+	Title = "Spam Speed",
+	Data = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
+	Default = "3",
+	Callback = function(value)
+		speeddo = value
+	end
+})
+
+local migaa = Tabs.Mina:NewToggle({
+	Title = "Visualizer",
+	Description = "Auto Parry Range Visualizer",
+	Default = false,
+	Callback = function(v)
+		visualize_Enabled = v
+	end
+})
+
+Tabs.Mina:NewButton({
+	Title = "Optimize",
+	Description = "Smoothen Your Game Performance",
+	Callback = function()
+		optimizer()
+	end
+})
+
+Tabs.Credits:NewButton({
+	Title = "Rudert",
+	Description = "Main Owner",
+	Callback = function()
+		print("Josh")
+	end
+})
+
+Tabs.Credits:NewButton({
+	Title = "...",
+	Description = "Assistant Developer",
+	Callback = function()
+		print("CBB")
+	end
+})
+
+Tabs.Credits:NewButton({
+	Title = "Check New Update",
+	Description = "• Check Update •",
+	Callback = function()
+		print("Update")
+	end
+})
     
     
     
