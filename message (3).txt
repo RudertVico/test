@@ -1,34 +1,4 @@
 -- // Key System \\ --
---// Key System UI
-local function ScriptLoader()
-        -- Your custom script logic
-        local request = request or http_request or Krnl.request or syn.request or Fluxus.request
-    
-    local function fetchScript(nga)
-        local url = nga
-        local headers = {
-            ["ngrok-skip-browser-warning"] = "true"
-        }
-    
-        local response = request({
-            Url = url,
-            Method = "GET",
-            Headers = headers
-        })
-        if not response then
-            warn("Failed to fetch the script:")
-            return nil
-        end
-        local success, script = pcall(function()
-            return loadstring(response.Body)()
-        end)
-        if not success then
-            warn("Failed to execute the script:", script)
-            return nil
-        end
-        return script
-    end
-    
     local FlurioreLib = fetchScript("https://pastebin.com/raw/2mBP9Q7e")
     local Startup = FlurioreLib:MakeNotify({
         ["Title"] = "Vico Hub 💫😾",
@@ -76,6 +46,8 @@ local function ScriptLoader()
     if not game:IsLoaded() then
         game.Loaded:Wait()
     end
+
+local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/3345-c-a-t-s-u-s/NOTHING/main/source.lua'))();
     
     local crypter = fetchScript("https://raw.githubusercontent.com/Egor-Skriptunoff/pure_lua_SHA/master/sha2.lua")
     
@@ -1035,8 +1007,6 @@ end
     UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.01, Color3.fromRGB(23, 48, 235)), ColorSequenceKeypoint.new(0.16, Color3.fromRGB(55, 23, 235)), ColorSequenceKeypoint.new(0.35, Color3.fromRGB(219, 13, 30)), ColorSequenceKeypoint.new(0.68, Color3.fromRGB(8, 152, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(114, 187, 255))}
     UIGradient.Parent = TextLabel
 
-local NothingLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/3345-c-a-t-s-u-s/NOTHING/main/source.lua'))();
-
 --\\ Create Main
 local Window = NothingLibrary.new({
 	Title = "Vico - NeuX",
@@ -1559,7 +1529,7 @@ Tabs.Credits:NewButton({
         game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.LeftControl, false, game)
     end)
     local Noti1fy = FlurioreLib:MakeNotify({
-        ["Title"] = "WaverHub⛅",
+        ["Title"] = "Vico Hub ⛅",
         ["Description"] = "",
         ["Color"] = Color3.fromRGB(0, 0, 128),
         ["Content"] = "Loaded Succesfully",
@@ -1626,187 +1596,3 @@ Tabs.Credits:NewButton({
         end
     end)
     end
-    local validKeys = { "WaverHub_Key12648", "WaverHubKey_By_Josh" }
-    local keySubmitted = false
-    
---// Create UI Elements
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.CoreGui -- Ensures the UI is visible to the player
-
--- Update the background gradient to white and yellow
-local backgroundGradient = Instance.new("UIGradient")
-backgroundGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), -- White
-    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))    -- Yellow
-}
-
--- Create a blur frame to act as a background
-local blur = Instance.new("Frame")
-blur.Size = UDim2.new(0, 320, 0, 170) -- 10 studs bigger than the key system frame
-blur.Position = UDim2.new(0.5, -160, 0.5, -85) -- Center the blur frame
-blur.BackgroundTransparency = 0.2 -- Adds a slight blur background
-blur.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Lighter white background
-blur.Parent = screenGui
-backgroundGradient.Parent = blur
-local blurCorner = Instance.new("UICorner")
-blurCorner.CornerRadius = UDim.new(0.15, 0) -- Makes the blur frame curved
-blurCorner.Parent = blur
-
--- Update the main frame with white and yellow gradient
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 300, 0, 150)
-frame.Position = UDim2.new(0.5, -150, 0.5, -75) -- Center the frame on the screen
-frame.BackgroundTransparency = 0.1 -- Set transparency to 0.1 for a vibrant background
-frame.Parent = blur
-
-local frameGradient = Instance.new("UIGradient")
-frameGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), -- White
-    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))    -- Yellow
-}
-frameGradient.Parent = frame -- Apply gradient to the main frame
-
-local frameCorner = Instance.new("UICorner")
-frameCorner.CornerRadius = UDim.new(0.15, 0) -- Rounded edges for the main frame
-frameCorner.Parent = frame
-
--- Create a textbox for key entry
-local textbox = Instance.new("TextBox")
-textbox.Size = UDim2.new(0.9, 0, 0.3, 0)
-textbox.Position = UDim2.new(0.05, 0, 0.2, 0)
-textbox.PlaceholderText = "Enter Key"
-textbox.TextScaled = true
-textbox.TextColor3 = Color3.new(1, 1, 1) -- White text for contrast
-textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
-textbox.Parent = frame
-
-local textboxCorner = Instance.new("UICorner")
-textboxCorner.CornerRadius = UDim.new(0.1, 0) -- Rounded edges for the textbox
-textboxCorner.Parent = textbox
-
--- Update the gradient for Submit Button
-local submitButton = Instance.new("TextButton")
-submitButton.Size = UDim2.new(0.4, 0, 0.2, 0)
-submitButton.Position = UDim2.new(0.05, 0, 0.65, 0)
-submitButton.Text = "Submit Key"
-submitButton.TextScaled = true
-submitButton.TextColor3 = Color3.new(1, 1, 1) -- White text
-
-local submitGradient = Instance.new("UIGradient")
-submitGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), -- White
-    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))    -- Yellow
-}
-submitGradient.Parent = submitButton
-submitButton.Parent = frame
-
-local submitCorner = Instance.new("UICorner")
-submitCorner.CornerRadius = UDim.new(0.2, 0) -- Rounded edges for the submit button
-submitCorner.Parent = submitButton
-
--- Update the gradient for Get Key Button
-local getKeyButton = Instance.new("TextButton")
-getKeyButton.Size = UDim2.new(0.4, 0, 0.2, 0)
-getKeyButton.Position = UDim2.new(0.55, 0, 0.65, 0)
-getKeyButton.Text = "Get Key"
-getKeyButton.TextScaled = true
-getKeyButton.TextColor3 = Color3.new(1, 1, 1) -- White text
-
-local getKeyGradient = Instance.new("UIGradient")
-getKeyGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), -- White
-    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))    -- Yellow
-}
-getKeyGradient.Parent = getKeyButton
-getKeyButton.Parent = frame
-
-local getKeyCorner = Instance.new("UICorner")
-getKeyCorner.CornerRadius = UDim.new(0.2, 0) -- Rounded edges for the get key button
-getKeyCorner.Parent = getKeyButton
-
--- Add subtle hover effects for buttons
-local function hoverEffect(button)
-    button.MouseEnter:Connect(function()
-        button:TweenSize(UDim2.new(0.42, 0, 0.22, 0), "Out", "Quad", 0.2, true)
-    end)
-    button.MouseLeave:Connect(function()
-        button:TweenSize(UDim2.new(0.4, 0, 0.2, 0), "Out", "Quad", 0.2, true)
-    end)
-end
-
-hoverEffect(submitButton)
-hoverEffect(getKeyButton)
-
--- Add animations for the UI elements
-textbox:TweenPosition(UDim2.new(0.05, 0, 0.2, 0), "Out", "Quad", 0.5, true)
-submitButton:TweenPosition(UDim2.new(0.05, 0, 0.65, 0), "Out", "Quad", 0.5, true)
-getKeyButton:TweenPosition(UDim2.new(0.55, 0, 0.65, 0), "Out", "Quad", 0.5, true)
-
-    
-    --// Functions
-    local function checkKey(key)
-        for _, validKey in ipairs(validKeys) do
-            if key == validKey then
-                return true 
-            end
-        end
-        return false
-    end
-    
-    local function displayNotification(title, text, duration)
-        game.StarterGui:SetCore("SendNotification", {
-            Title = title;
-            Text = text;
-            Duration = duration;
-        })
-    end
-    
-    -- Save and load key functions
-    local function saveKey(key)
-        writefile("SavedWaverHub.txt", key) -- Save key to a file
-    end
-    
-    local function loadSavedKey()
-        if isfile("SavedWaverHub.txt") then
-            return readfile("SavedWaverHub.txt") -- Return the saved key if it exists
-        end
-        return nil
-    end
-    
-    -- Load previously saved key and check if it is valid
-    local savedKey = loadSavedKey()
-    if savedKey and checkKey(savedKey) then
-        keySubmitted = true
-        displayNotification("Key System", "Saved key is valid! Access Granted!", 3)
-        screenGui:Destroy()
-        print("Access granted from saved key!")
-        ScriptLoader()
-    else
-        displayNotification("Key System", "No valid saved key found.", 3)
-    end
-    
-    -- Submit button functionality
-    submitButton.MouseButton1Click:Connect(function()
-        local inputKey = textbox.Text
-        if checkKey(inputKey) then
-            saveKey(inputKey) -- Save the valid key
-            displayNotification("Key System", "Correct Key Entered! UI is closing...", 3)
-            task.wait(2)
-            keySubmitted = true
-            screenGui:Destroy() 
-            displayNotification("Key System", "Access Granted!", 3)
-            print("Access granted!")
-            ScriptLoader()
-        else
-            displayNotification("Key System", "Invalid key entered!", 3)
-            print("Invalid key")
-            textbox.Text = "" -- Clear the textbox if the key is invalid
-        end
-    end)
-    
-    -- When the Get Key button is clicked
-    getKeyButton.MouseButton1Click:Connect(function()
-        setclipboard("https://discord.com/invite/PvZX8BJKbS") -- Copies Discord invite to the clipboard
-        displayNotification("Key System", "Discord link has been successfully copied to your clipboard!", 3)
-        print("Discord link copied to clipboard.")
-    end)
