@@ -40,7 +40,7 @@ local function ScriptLoader()
     })
     local parry
     local nowprediction = true
-    local auto_parry_enabled = false
+    local auto_parry_enabled = true
     local personnel_detector_enabled = true
     local ball_trial_Enabled = false
     local strength = 0
@@ -1035,15 +1035,19 @@ end
     UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.01, Color3.fromRGB(23, 48, 235)), ColorSequenceKeypoint.new(0.16, Color3.fromRGB(55, 23, 235)), ColorSequenceKeypoint.new(0.35, Color3.fromRGB(219, 13, 30)), ColorSequenceKeypoint.new(0.68, Color3.fromRGB(8, 152, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(114, 187, 255))}
     UIGradient.Parent = TextLabel
     --\\ Create Main
-        Fluent = fetchScript("https://pastebin.com/raw/ijLKzE19")
-        Window = Fluent:CreateWindow({
-        Title = "Vico Hub 😴",
-        SubTitle = "Made By Rudert...",
-        TabWidth = 120,
-        Size = UDim2.fromOffset(490, 320),
-        Acrylic = false, 
-        Theme = "Acrylic",
-        MinimizeKey = Enum.KeyCode.LeftControl 
+local Window = NothingLibrary.new({
+	Title = "Vico - NeuX",
+	Description = "Vico - Blade Ball - Test",
+	Keybind = Enum.KeyCode.LeftControl,
+	Logo = 'http://www.roblox.com/asset/?id=18898582662'
+})
+
+local TabFrame = Window:NewTab({
+	Title = "Main",
+	Description = "very cool and awesome",
+	Icon = "rbxassetid://7733960981"
+})
+
     })
     --\\ End
     --\\ Create Tab
