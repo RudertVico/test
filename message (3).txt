@@ -31,13 +31,14 @@ local function ScriptLoader()
     
     local FlurioreLib = fetchScript("https://pastebin.com/raw/2mBP9Q7e")
     local Startup = FlurioreLib:MakeNotify({
-        ["Title"] = "WaverHub⛅",
+        ["Title"] = "Vico Hub 💫😾",
         ["Description"] = "",
         ["Color"] = Color3.fromRGB(255, 0, 111),
-        ["Content"] = "Updated",
+        ["Content"] = "Updated... V.Beta",
         ["Time"] = 1,
         ["Delay"] = 5
     })
+    local parry
     local nowprediction = true
     local auto_parry_enabled = false
     local personnel_detector_enabled = true
@@ -445,26 +446,12 @@ local function ScriptLoader()
         return closest_player
     end
 
-    function AutoParry.get_parry_remote()
-        local Services = {game:GetService("VirtualUser"),game:GetService('VirtualInputManager')}
-
-        for _, v in pairs(Services) do
-            local temp_remote = v:FindFirstChildOfClass('RemoteEvent')
-    
-            if temp_remote and temp_remote.Name:find('\n') then
-            AutoParry.ball.properties.parry_remote = temp_remote
-        end
+for i,v in getgc() do
+    if type(v) == "function" and debug.getinfo(v).name == "Parry" then      
+        parry = v
+        break
     end
 end
-    
-    AutoParry.get_parry_remote()
-    
-
-AutoParry.get_parry_remote()
-    
-    AutoParry.get_parry_remote()
-    
-    AutoParry.get_parry_remote()
     
     function AutoParry.perform_grab_animation()
         local animation = ReplicatedStorage.Shared.SwordAPI.Collection.Default:FindFirstChild('GrabParry')
@@ -540,7 +527,7 @@ AutoParry.get_parry_remote()
         else
             direction = CFrame.new(camera_direction, target_position + Vector3.new(0, 60, 0))
     
-            ball_properties.parry_remote:FireServer(
+            parry(
                 0,
                 direction,
                 { [AutoParry.target.aim.Name] = target_position },
@@ -557,7 +544,7 @@ AutoParry.get_parry_remote()
             return
         end
     
-        ball_properties.parry_remote:FireServer(
+        parry(
             0.5,
             direction,
             { [AutoParry.target.aim.Name] = target_position },
@@ -1050,8 +1037,8 @@ AutoParry.get_parry_remote()
     --\\ Create Main
         Fluent = fetchScript("https://pastebin.com/raw/ijLKzE19")
         Window = Fluent:CreateWindow({
-        Title = "WaverHub⛅",
-        SubTitle = "Made By Josh and helped by CBB/REN",
+        Title = "Vico Hub 😴",
+        SubTitle = "Made By Rudert...",
         TabWidth = 120,
         Size = UDim2.fromOffset(490, 320),
         Acrylic = false, 
@@ -1147,24 +1134,24 @@ AutoParry.get_parry_remote()
             end
         })
         Tabs.Credits:AddButton({
-            Title = "Josh",
+            Title = "Rudert",
             Description = "Main Owner",
             Callback = function()
              print("Josh")
             end
         })
         Tabs.Credits:AddButton({
-            Title = "CBB",
+            Title = "...",
             Description = "Assistant Developer",
             Callback = function()
              print("CBB")
             end
         })
         Tabs.Credits:AddButton({
-            Title = "I Love Femboys",
-            Description = "Source, main dev",
+            Title = "Check New Update",
+            Description = "• Check Update •",
             Callback = function()
-             print("I Love Yo Mama")
+             print("Update")
             end
         })
         end
